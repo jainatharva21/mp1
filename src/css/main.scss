@@ -1,1 +1,38 @@
 /* Your SCSS here. */
+body{
+    margin: 0;
+    font-family: sans-serif; // need to change this to a better font later
+}
+
+.navbar{
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(2, 2, 64);
+    padding: 10px 20px;
+    align-items: center;
+    z-index: 100;
+}
+
+.name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.header-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.header-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-links a:hover {
+    color: rgb(23, 193, 63)
+}
