@@ -1,4 +1,8 @@
 /* Your SCSS here. */
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     margin: 0;
     font-family: sans-serif; // need to change this to a better font later
@@ -10,7 +14,7 @@ body{
     display: flex;
     justify-content: space-between;
     background-color: rgb(2, 2, 64);
-    padding: 10px 20px;
+    padding: 10px 50px;
     align-items: center;
     z-index: 100;
 }
@@ -36,3 +40,54 @@ body{
 .header-links a:hover {
     color: rgb(23, 193, 63)
 }
+
+.footer {
+    margin-top: auto;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #666;
+    background-color: rgb(19, 19, 19);
+    border-top: 1px solid #eee;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 0 1.5rem;
+    background-color: black;
+    min-height: 75vh;
+}
+
+.hero-name {
+    margin: 0;
+    font-size: clamp(2.5rem, 9vw, 6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    background: linear-gradient(90deg, #2975f7, #764afb 50%, #f53598);
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-typed {
+    margin: 0;
+    margin-top: 1.5rem;
+    color: #fff;
+    font-size: clamp(1.15rem, 2.6vw, 1.75rem);
+    min-height: 1.5em;         /* reserves space so nothing jumps while typing */
+}
+  
+.caret {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    background: #fff;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
