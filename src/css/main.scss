@@ -304,3 +304,109 @@ body {
         .skills-grid { grid-template-columns: 1fr; }
         .skill-card--wide { grid-column: span 1; }
     }
+
+// ---- About ----
+.about {
+    position: relative;
+    padding: 5rem 1.5rem;
+    scroll-margin-top: $navbar-height;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.88)),
+      url("../assets/image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  
+    &-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 2.5rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+  
+    &-col {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+  
+      &.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+  
+      &:nth-child(2).is-visible { transition-delay: 0.12s; }
+    }
+  }
+  
+  .about-terminal {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(13, 13, 16, 0.92);
+  
+    &__bar {
+      display: flex;
+      gap: 0.45rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  
+      span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+  
+        &:first-child { background: #fb7185; }
+        &:nth-child(2) { background: #fbbf24; }
+        &:nth-child(3) { background: #34d399; }
+      }
+    }
+  
+    &__body {
+      margin: 0;
+      padding: 1.25rem 1.35rem;
+      color: $text-light;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+  
+      .prompt { color: #34d399; }
+    }
+  }
+  
+  .about-bio {
+    &__label {
+      display: block;
+      margin-bottom: 0.75rem;
+      color: #764afb;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+  
+    &__heading {
+      @include gradient-text;
+      margin: 0 0 1.25rem;
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+  
+    p {
+      margin: 0 0 1rem;
+      color: $text-light;
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .about-inner { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: repeat(2, 1fr); }
+  }

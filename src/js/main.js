@@ -12,7 +12,7 @@ let i = 0;
 })();
 
 
-const cards = document.querySelectorAll(".skill-card");
+const cards = document.querySelectorAll(".skill-card, .about-col");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
