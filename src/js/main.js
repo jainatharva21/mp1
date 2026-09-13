@@ -146,3 +146,36 @@ modal.querySelector(".modal__backdrop").addEventListener("click", closeModal);
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
 });
+
+const navbar = document.querySelector(".navbar");
+const navLinks = document.querySelectorAll(".header-links a");
+const sections = [...navLinks].map((link) =>
+  document.querySelector(link.getAttribute("href"))
+);
+
+function onScroll() {
+  navbar.classList.toggle("is-scrolled", window.scrollY > 50);
+
+  const navBottom = navbar.offsetHeight;
+  const atPageBottom =
+    window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+
+  let activeIndex = 0;
+
+  if (atPageBottom) {
+    activeIndex = sections.length - 1;
+  } else {
+    sections.forEach((section, i) => {
+      if (section && section.getBoundingClientRect().top <= navBottom + 1) {
+        activeIndex = i;
+      }
+    });
+  }
+
+  navLinks.forEach((link, i) =>
+    link.classList.toggle("is-active", i === activeIndex)
+  );
+}
+
+window.addEventListener("scroll", onScroll);
+onScroll();
