@@ -1,93 +1,175 @@
 /* Your SCSS here. */
-html{
-    scroll-behavior: smooth;
+$navy:        rgb(2, 2, 64);
+$hover-green: rgb(23, 193, 63);
+$footer-bg:   rgb(19, 19, 19);
+$black:       #000;
+$white:       #fff;
+$muted:       #666;
+$text-light: #e2e8f0;
+$text-muted: #94a3b8;
+
+$gradient: linear-gradient(90deg, #2975f7, #764afb 50%, #f53598);
+
+$navbar-height: 4rem;
+$font-stack:    sans-serif; // need to change this to a better font later
+
+@mixin gradient-text {
+  background: $gradient;
+  background-clip: text;
+  color: transparent;
 }
 
-body{
-    margin: 0;
-    font-family: sans-serif; // need to change this to a better font later
+@mixin flex-center($dir: row) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: center;
+  align-items: center;
 }
 
-.navbar{
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    background-color: rgb(2, 2, 64);
-    padding: 10px 50px;
-    align-items: center;
-    z-index: 100;
+// ---- Base ----
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: $font-stack;
+}
+
+// ---- Navbar ----
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  background-color: $navy;
 }
 
 .name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $white;
+  text-decoration: none;
 }
 
 .header-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
+  list-style: none;
+  display: flex;
+  gap: 20px;
 
-.header-links a {
-    color: white;
+  a {
+    color: $white;
     text-decoration: none;
+
+    &:hover {
+      color: $hover-green;
+    }
+  }
 }
 
-.header-links a:hover {
-    color: rgb(23, 193, 63)
-}
-
-.footer {
-    margin-top: auto;
-    padding: 0.5rem;
-    text-align: center;
-    font-size: 0.875rem;
-    color: #666;
-    background-color: rgb(19, 19, 19);
-    border-top: 1px solid #eee;
-}
-
+// ---- Hero ----
 .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    padding: 0 1.5rem;
-    background-color: black;
-    min-height: 75vh;
-}
+  @include flex-center(column);
+  min-height: 75vh;
+  padding: 0 1.5rem;
+  text-align: center;
+  background-color: $black;
+  scroll-margin-top: $navbar-height;
 
-.hero-name {
+  &-name {
+    @include gradient-text;
     margin: 0;
     font-size: clamp(2.5rem, 9vw, 6rem);
     font-weight: 800;
     line-height: 1.05;
-    background: linear-gradient(90deg, #2975f7, #764afb 50%, #f53598);
-    background-clip: text;
-    color: transparent;
-}
+  }
 
-.hero-typed {
-    margin: 0;
-    margin-top: 1.5rem;
-    color: #fff;
+  &-typed {
+    margin: 1.5rem 0 0;
+    color: $white;
     font-size: clamp(1.15rem, 2.6vw, 1.75rem);
-    min-height: 1.5em;         /* reserves space so nothing jumps while typing */
-}
-  
-.caret {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    margin-left: 2px;
-    vertical-align: -0.15em;
-    background: #fff;
-    animation: blink 1s step-end infinite;
+    min-height: 1.5em; // reserves space so nothing jumps while typing
+  }
 }
 
-@keyframes blink { 50% { opacity: 0; } }
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: $white;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+// ---- Footer ----
+.footer {
+  margin-top: auto;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: $muted;
+  background-color: $footer-bg;
+  border-top: 1px solid #eee;
+}
+
+.contact {
+    padding: 5rem 1.5rem;
+    text-align: center;
+    background-color: $footer-bg;
+    scroll-margin-top: $navbar-height;
+  
+    &-heading {
+      @include gradient-text;
+      margin: 0 0 0.6rem;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+  
+    &-sub {
+      margin: 0 0 2.5rem;
+      color: $text-muted;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+    }
+  
+    &-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+  
+    &-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: $text-light;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  
+      i {
+        font-size: 1.15rem;
+      }
+  
+      &:hover {
+        transform: translateY(-3px);
+        border-color: rgba(118, 74, 251, 0.6);
+        background: rgba(118, 74, 251, 0.1);
+      }
+  
+      &:focus-visible {
+        outline: 2px solid #764afb;
+        outline-offset: 3px;
+      }
+    }
+  }
