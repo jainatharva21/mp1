@@ -10,3 +10,16 @@ let i = 0;
     target.textContent = typewriterText.slice(0, i++);
     setTimeout(typewriter, 60);
 })();
+
+
+const cards = document.querySelectorAll(".skill-card");
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+cards.forEach((card) => observer.observe(card));

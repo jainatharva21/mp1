@@ -8,6 +8,14 @@ $muted:       #666;
 $text-light: #e2e8f0;
 $text-muted: #94a3b8;
 
+$tile-accents: (
+  "lang": #2975f7,
+  "ai":   #764afb,
+  "data": #f53598,
+  "app":  #22d3ee,
+  "sys":  #fb7185
+);
+
 $gradient: linear-gradient(90deg, #2975f7, #764afb 50%, #f53598);
 
 $navbar-height: 4rem;
@@ -117,7 +125,7 @@ body {
   font-size: 0.875rem;
   color: $muted;
   background-color: $footer-bg;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);  
 }
 
 .contact {
@@ -173,3 +181,126 @@ body {
       }
     }
   }
+
+  // ---- Skills ----
+.skills {
+    padding: 4rem 1.5rem;
+    background-color: $black;
+    scroll-margin-top: $navbar-height;
+  
+    &-title {
+      @include gradient-text;
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+  
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+  }
+
+  .skill-card {
+    position: relative;
+    overflow: hidden;
+    padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    background:
+      radial-gradient(120% 100% at 100% 0%, rgba(255, 255, 255, 0.06), transparent 60%),
+      #0d0d10;
+    text-align: left;
+  
+    --accent: #{map-get($tile-accents, "ai")}; // fallback if no modifier class
+  
+    // reveal-on-scroll starting state
+    opacity: 0;
+    transform: translateY(24px);
+  
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease,
+      border-color 0.3s ease,
+      background 0.3s ease;
+  
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}).is-visible {
+        transition-delay: #{($i - 1) * 0.08}s;
+      }
+    }
+  
+    &--wide { grid-column: span 2; }
+  
+    &__mark {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      font-size: 2rem;
+      color: var(--accent);
+      opacity: 0.22;
+      transition: opacity 0.3s ease;
+    }
+  
+    &__label {
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+  
+    &__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 0.6rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: $text-light;
+      font-size: 1.05rem;
+      line-height: 1.9;
+  
+      li:not(:last-child)::after {
+        content: "·";
+        margin-left: 0.6rem;
+        color: var(--accent);
+        opacity: 0.5;
+      }
+    }
+  
+    &:hover {
+      border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+      background:
+        radial-gradient(120% 100% at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+        #0d0d10;
+  
+      .skill-card__mark { opacity: 0.5; }
+    }
+  }
+    @each $name, $color in $tile-accents {
+        .skill-card--#{$name} { --accent: #{$color}; }
+    }
+    @media (max-width: 1024px) {
+        .skills-grid { grid-template-columns: repeat(2, 1fr); }
+        .skill-card--wide { grid-column: span 2; }
+    }
+      
+      @media (max-width: 700px) {
+        .skills-grid { grid-template-columns: 1fr; }
+        .skill-card--wide { grid-column: span 1; }
+    }
