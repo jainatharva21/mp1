@@ -15,6 +15,7 @@
             <ul class = "header-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -60,6 +61,67 @@
                 <p>I'm looking for roles where I can keep working on hard problems close to the data.</p>
               </article>
             </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2 class="projects-title">Projects</h2>
+
+            <div class="carousel">
+                <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous project">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="carousel__viewport">
+                    <ul class="carousel__track">
+                      <li class="slide">
+                        <span class="slide__date">Dec 2024</span>
+                        <h3 class="slide__title">RISC-V Out-of-Order Processor</h3>
+                        <p class="slide__desc">An out-of-order RISC-V core built on explicit register renaming with M-extension support. Pairs a tournament branch predictor — 2-level and g-share combined with a return address stack — against a parametrized set-associative cache with next-line prefetching and a post-commit store buffer.</p>
+                        <ul class="slide__tags">
+                          <li>SystemVerilog</li><li>RISC-V</li><li>Verdi</li><li>Design Vision</li>
+                        </ul>
+                        <p class="slide__metric"><strong>86%</strong> branch prediction accuracy on standard benchmarks</p>
+                        <button class="slide__btn" data-project="riscv">View details</button>
+                      </li>
+              
+                      <li class="slide">
+                        <span class="slide__date">Oct 2024</span>
+                        <h3 class="slide__title">4-Way Set Associative Pipelined Cache</h3>
+                        <p class="slide__desc">A 2-stage pipelined cache with 16 sets, 4 ways, and 32-byte cachelines, handling both hits and misses. Uses a pseudo-LRU replacement policy with a write-back, write-allocate strategy to cut miss penalties.</p>
+                        <ul class="slide__tags">
+                          <li>SystemVerilog</li><li>RISC-V</li><li>Verdi</li>
+                        </ul>
+                        <p class="slide__metric"><strong>16 sets × 4 ways</strong> fully parametrized design</p>
+                        <button class="slide__btn" data-project="riscv">View details</button>
+                      </li>
+              
+                      <li class="slide">
+                        <span class="slide__date">Nov 2023</span>
+                        <h3 class="slide__title">Linux Kernel from Scratch</h3>
+                        <p class="slide__desc">A ground-up operating system with multi-level paging, a flat-structured file system, and an interrupt descriptor table handling exceptions, system calls, and interrupts. Includes drivers for keyboard, RTC, and the Intel 8259 PIC.</p>
+                        <ul class="slide__tags">
+                          <li>C</li><li>x86</li><li>Linux</li>
+                        </ul>
+                        <p class="slide__metric"><strong>10 system calls</strong> plus multi-terminal round-robin scheduling</p>
+                        <button class="slide__btn" data-project="riscv">View details</button>
+                      </li>
+              
+                      <li class="slide">
+                        <span class="slide__date">May 2023</span>
+                        <h3 class="slide__title">Pocket Tanks on FPGA</h3>
+                        <p class="slide__desc">A turn-based multiplayer game rebuilt on an Intel MAX10 FPGA, driven by a finite state machine bridging C and SystemVerilog. Keyboard interrupts run through the embedded NIOS II CPU, with VGA output and frame buffering for display.</p>
+                        <ul class="slide__tags">
+                          <li>SystemVerilog</li><li>C</li><li>FPGA</li><li>Quartus Prime</li>
+                        </ul>
+                        <p class="slide__metric"><strong>NIOS II SoC</strong> with VGA output and frame buffering</p>
+                        <button class="slide__btn" data-project="riscv">View details</button>
+                      </li>
+                    </ul>
+                </div>
+                <button class="carousel__arrow carousel__arrow--next" aria-label="Next project">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+            </div> 
+            <div class="carousel__dots" role="tablist" aria-label="Project navigation"></div>     
         </section>
 
         <section id="skills" class="skills">
@@ -139,5 +201,17 @@
             <p>&copy; 2026 Atharva Jain. All rights reserved.</p>
         </footer>
 
+        <div class="modal" id="modal" aria-hidden="true">
+            <div class="modal__backdrop"></div>
+            <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+              <button class="modal__close" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <span class="modal__date" id="modal-date"></span>
+              <h3 class="modal__title" id="modal-title"></h3>
+              <ul class="modal__list" id="modal-list"></ul>
+              <p class="modal__stack" id="modal-stack"></p>
+            </div>
+        </div>
     </body>
 </html>
